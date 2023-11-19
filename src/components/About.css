@@ -1,0 +1,83 @@
+.aboutContainer {
+  padding: 3rem 10rem;
+}
+.aboutHeader {
+  margin-bottom: 3rem;
+  font-size: 3rem;
+  width: 100%;
+  text-align: center;
+}
+.aboutImage {
+  width: 40%;
+  border-radius: 30px;
+  margin-right: 3rem;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+.aboutImage:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.aboutDetails {
+  width: 60%;
+  padding: 2rem 0;
+}
+.aboutElement {
+  width: 100%;
+  border: 3px solid white;
+  border-radius: 30px;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+.aboutElement p {
+  color: rgb(169, 169, 169);
+  padding: 0.5rem 0 0 0;
+  text-align: center;
+}
+.aboutElements {
+  display: flex;
+  width: 100%;
+}
+.aboutMe {
+  display: flex;
+}
+.aboutText {
+  margin-top: 10px;
+  padding: 10px;
+  color: rgb(202, 202, 202);
+  line-height: 2rem;
+}
+@media only screen and (max-width: 1350px) {
+    html{ 
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+  .aboutContainer {
+    padding: 3rem 0rem;
+  }
+  .aboutMe {
+    flex-direction: column;
+    align-items: center;
+  }
+  .aboutImage {
+    width: 50%;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .aboutElements{
+    flex-direction: column;
+    margin: 0;
+  }
+  .aboutElement{
+    margin: 0 0 1rem 0;
+    width: 100%;
+  
+  }
+}

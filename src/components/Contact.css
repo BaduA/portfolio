@@ -1,0 +1,34 @@
+.contactContainer{
+    height: 88vh;
+    padding: 10rem 5rem;
+}
+.contactContainer h1{
+    margin-bottom: 6rem;
+    text-align: center;
+}
+.contactElement{
+    display: flex;
+    margin: 0 2rem;
+    
+}
+.contactElements{
+    display: flex;
+}
+.contactIcon{
+    margin-right: 3rem;
+}
+.contactElementDetails h4{
+    color: rgb(0, 132, 255);
+    margin-bottom: .5rem;
+}
+
+@media only screen and (max-width:1000px){
+    .contactElements{
+        flex-direction: column;
+    }
+    .contactElement{
+        display: flex;
+        margin: 2rem 0rem;
+        
+    }
+ }
