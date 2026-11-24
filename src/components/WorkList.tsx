@@ -1,39 +1,14 @@
-"use client";
-
-import Image from "next/image";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useVelocity,
-} from "motion/react";
-import { useState } from "react";
 import type { Job } from "@/data/profile";
+import Cover from "./Cover";
 
 /**
- * İş listesi: satırın üzerine gelince imleci takip eden, hızına göre eğilen
- * önizleme görseli belirir. Tıklayınca satır akordeon gibi açılır.
+ * İş listesi. Her satır yerel <details> akordeonu (JS yok).
+ * Masaüstünde satırın üzerine gelince imleci takip eden, hızına göre eğilen
+ * bir önizleme belirir (konum Effects.tsx'teki tek rAF döngüsünden).
  */
 export default function WorkList({ jobs }: { jobs: Job[] }) {
-  const [active, setActive] = useState<number | null>(null);
-  const [open, setOpen] = useState<number | null>(0);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const x = useSpring(mx, { stiffness: 150, damping: 20, mass: 0.5 });
-  const y = useSpring(my, { stiffness: 150, damping: 20, mass: 0.5 });
-  const vx = useVelocity(x);
-  const rotate = useTransform(vx, [-2000, 2000], [-18, 18], { clamp: true });
-
   return (
-    <section
-      className="relative mx-auto max-w-[1600px] px-5 pb-32 md:px-10"
-      onPointerMove={(e) => {
-        mx.set(e.clientX);
-        my.set(e.clientY);
-      }}
-    >
+    <section data-follow className="group/list relative mx-auto max-w-[1600px] px-5 pb-32 md:px-10">
       <div className="hidden grid-cols-12 gap-4 border-b border-line pb-4 font-mono text-[11px] uppercase tracking-widest text-mute md:grid">
         <span className="col-span-1">No</span>
         <span className="col-span-5">Şirket</span>
@@ -41,98 +16,65 @@ export default function WorkList({ jobs }: { jobs: Job[] }) {
         <span className="col-span-3 text-right">Dönem</span>
       </div>
 
-      <ul onPointerLeave={() => setActive(null)}>
-        {jobs.map((job, i) => {
-          const isOpen = open === i;
-          return (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: i * 0.08, ease: [0.19, 1, 0.22, 1] }}
-              className="border-b border-line"
-              onPointerEnter={() => setActive(i)}
-            >
-              <button
-                onClick={() => setOpen(isOpen ? null : i)}
-                aria-expanded={isOpen}
-                data-cursor={isOpen ? "Kapat" : "Aç"}
-                className="group grid w-full grid-cols-12 items-baseline gap-4 py-8 text-left md:py-10"
-              >
-                <span className="col-span-2 font-mono text-xs text-mute md:col-span-1">0{i + 1}</span>
-                <span
-                  className={`col-span-10 text-3xl font-medium tracking-tight transition-all duration-700 ease-expo md:col-span-5 md:text-5xl ${
-                    active !== null && active !== i ? "opacity-30 blur-[1px]" : ""
-                  } group-hover:translate-x-3`}
-                >
-                  {job.company}
+      <div>
+        {jobs.map((job, i) => (
+          <details
+            key={i}
+            name="jobs"
+            open={i === 0}
+            data-reveal="up"
+            data-follow-index={i}
+            style={{ "--d": `${i * 70}ms` } as React.CSSProperties}
+            className="job group/job border-b border-line"
+          >
+            <summary data-cursor="Aç" className="grid cursor-pointer grid-cols-12 items-baseline gap-4 py-8 md:py-10">
+              <span className="col-span-2 font-mono text-xs text-mute md:col-span-1">0{i + 1}</span>
+              <span className="col-span-10 text-3xl font-medium tracking-tight transition-[translate,opacity,filter] duration-700 ease-expo group-hover/job:translate-x-3 md:col-span-5 md:text-5xl md:group-hover/list:opacity-30 md:group-hover/list:blur-[1px] md:group-hover/job:!opacity-100 md:group-hover/job:!blur-none">
+                {job.company}
+              </span>
+              <span className="col-span-7 col-start-3 text-mute md:col-span-3 md:col-start-auto">{job.role}</span>
+              <span className="col-span-3 flex items-center justify-end gap-3 text-right font-mono text-xs text-mute md:text-sm">
+                {job.period}
+                <span className="hidden size-6 place-items-center rounded-full border border-line transition-transform duration-500 ease-expo group-open/job:rotate-45 md:grid">
+                  +
                 </span>
-                <span className="col-span-7 col-start-3 text-mute md:col-span-3 md:col-start-auto">
-                  {job.role}
+              </span>
+            </summary>
+            <div className="grid grid-cols-12 gap-4 pb-10">
+              <p className="col-span-12 text-lg leading-relaxed text-bone/80 md:col-span-6 md:col-start-2">{job.description}</p>
+              <div className="col-span-12 flex flex-wrap content-start gap-2 md:col-span-4 md:col-start-9 md:justify-end">
+                <span className="rounded-full px-3 py-1 text-xs text-ink" style={{ backgroundColor: job.color }}>
+                  {job.type}
                 </span>
-                <span className="col-span-3 text-right font-mono text-xs text-mute md:text-sm">{job.period}</span>
-              </button>
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="grid grid-cols-12 gap-4 pb-10">
-                      <div className="col-span-12 md:col-span-6 md:col-start-2">
-                        <p className="text-lg leading-relaxed text-bone/80">{job.description}</p>
-                      </div>
-                      <div className="col-span-12 flex flex-wrap content-start gap-2 md:col-span-4 md:col-start-9 md:justify-end">
-                        <span className="rounded-full bg-accent px-3 py-1 text-xs text-ink">{job.type}</span>
-                        {job.tags.map((t) => (
-                          <span key={t} className="rounded-full border border-line px-3 py-1 text-xs">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.li>
-          );
-        })}
-      </ul>
+                {job.tags.map((t) => (
+                  <span key={t} className="rounded-full border border-line px-3 py-1 text-xs">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
 
       {/* İmleci takip eden önizleme */}
-      <motion.div
+      <div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-30 hidden aspect-[4/3] w-[320px] md:block"
-        style={{ x, y, rotate, translateX: "-50%", translateY: "-50%" }}
+        className="follow-card pointer-events-none fixed left-0 top-0 z-30 hidden aspect-[4/3] w-[300px] md:block"
       >
-        <AnimatePresence>
-          {active !== null && (
-            <motion.div
-              key="preview"
-              className="relative size-full overflow-hidden rounded-2xl"
-              initial={{ clipPath: "inset(50% 50% 50% 50% round 16px)" }}
-              animate={{ clipPath: "inset(0% 0% 0% 0% round 16px)" }}
-              exit={{ clipPath: "inset(50% 50% 50% 50% round 16px)" }}
-              transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            >
-              {jobs.map((job, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute inset-0"
-                  animate={{ y: `${(i - active) * 100}%` }}
-                  transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-                >
-                  <Image src={job.image} alt="" fill sizes="320px" className="object-cover" />
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+        <div className="size-full scale-50 overflow-hidden rounded-2xl opacity-0 transition-[scale,opacity] duration-500 ease-expo [[data-show]>&]:scale-100 [[data-show]>&]:opacity-100">
+          <div
+            className="relative h-full transition-transform duration-700 ease-io [container-type:inline-size]"
+            style={{ transform: "translateY(calc(var(--i, 0) * -100%))" }}
+          >
+            {jobs.map((job, i) => (
+              <div key={i} className="relative h-full overflow-hidden">
+                <Cover color={job.color} label={job.company} sizes="300px" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

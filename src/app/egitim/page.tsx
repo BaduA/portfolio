@@ -14,7 +14,7 @@ export default function EducationPage() {
         eyebrow="Akademik"
         title="Eğitim"
         accent="yolculuğum"
-        description="Fen lisesinden Bilkent'e: merakın disipline dönüştüğü yıllar."
+        description="Okullarım, bölümlerim ve bu yolculukta öğrendiklerim."
       />
       <Timeline items={education} />
     </PageTransition>

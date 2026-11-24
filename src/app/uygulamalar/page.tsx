@@ -14,7 +14,7 @@ export default function AppsPage() {
         eyebrow="Projeler"
         title="Uygulama"
         accent="larım"
-        description="Yapay zekâdan mobile, web'den backend'e kadar geliştirdiğim projeler. Kartın üzerinde gezin, tıkla ve kodu incele."
+        description="Geliştirdiğim projeler. Kartların üzerinde gezin, tıkla ve detayları incele."
       />
       <AppsGallery apps={apps} />
     </PageTransition>

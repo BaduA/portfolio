@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const subscribe = (cb: () => void) => {
+  const id = setInterval(cb, 1000);
+  return () => clearInterval(id);
+};
 
 export default function Clock({ timezone }: { timezone: string }) {
-  const [time, setTime] = useState<string>("--:--:--");
-  useEffect(() => {
-    const fmt = new Intl.DateTimeFormat("tr-TR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      timeZone: timezone,
-    });
-    const tick = () => setTime(fmt.format(new Date()));
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [timezone]);
+  const time = useSyncExternalStore(
+    subscribe,
+    () =>
+      new Intl.DateTimeFormat("tr-TR", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: timezone }).format(
+        Math.floor(Date.now() / 1000) * 1000
+      ),
+    () => "--:--:--"
+  );
   return <span className="tabular-nums">{time}</span>;
 }

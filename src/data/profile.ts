@@ -1,54 +1,43 @@
 /**
- * Sitedeki TÜM kişisel içerik bu dosyada.
- * Metinleri, işleri, uygulamaları ve eğitimi buradan değiştirmen yeterli.
- * "TODO" ile işaretli alanlar senden bilgi bekliyor.
+ * Sitedeki TÜM içerik bu dosyada.
+ * Şu an her şey yer tutucu (placeholder). "TODO" yazan her yeri kendi bilgilerinle değiştir.
+ *
+ * Fotoğraf eklemek için: görseli public/images/ içine koy ve ilgili `image` / `portrait`
+ * alanına yolunu yaz (ör. "/images/portre.jpg"). Boş bırakırsan şık bir renkli kapak gösterilir.
  */
 
 export const profile = {
-  firstName: "Batu Alp",
-  lastName: "Ustagül",
-  initials: "BAU",
-  location: "Ankara, Türkiye",
+  firstName: "Adın", // TODO
+  lastName: "Soyadın", // TODO
+  initials: "AS", // TODO
+  location: "Şehir, Ülke", // TODO
   timezone: "Europe/Istanbul",
-  roles: ["Full-Stack Developer", "AI Engineer", "Mobile Developer", "Bilgisayar Mühendisi"],
+  roles: ["Yazılım Geliştirici", "Ürün Tasarımcısı", "Problem Çözücü"], // TODO
   tagline:
-    "Yapay zekâ, backend ve frontend sistemleri geliştiriyorum. Fikirleri hızlı, sağlam ve göze hoş gelen ürünlere dönüştürüyorum.",
-  portrait: "/images/portrait.png",
+    "Buraya kendini bir-iki cümleyle anlat: ne yaptığını, neyi sevdiğini ve insanlara nasıl değer kattığını.", // TODO
+  portrait: "", // TODO: "/images/portre.jpg"
   availability: "Yeni projelere açığım",
-  email: "batualpustaguel@gmail.com",
+  email: "merhaba@ornek.com", // TODO
   socials: [
-    { label: "GitHub", href: "https://github.com/BaduA" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/batu-alp-ustag%C3%BCl-409882228/" },
+    { label: "GitHub", href: "#" }, // TODO
+    { label: "LinkedIn", href: "#" }, // TODO
   ],
 };
 
 export const about = {
   intro:
-    "14 yaşımda kod yazmaya başladım ve o günden beri bırakamadım. Buca Fen Lisesi'nden mezun oldum; üniversite sınavında yaklaşık 3 milyon aday arasında 181. oldum. Türkiye'deki her üniversiteyi seçebilecekken Bilkent Bilgisayar Mühendisliği'ni seçtim. Uyum sağlamayı seven, hızlı öğrenen ve çok çalışan biriyim — kod yazmak benim tutkum.",
+    "Burası senin hikâyen. Nereden geldiğini, ne zaman ve nasıl başladığını, seni neyin heyecanlandırdığını ve bugün hangi problemleri çözdüğünü anlat. Bu paragraf kaydırdıkça kelime kelime belirecek, o yüzden samimi ve akıcı yazmak en iyisi.", // TODO
   stats: [
-    { value: 181, prefix: "", suffix: ".", label: "Türkiye sıralaması (~3M aday)" },
-    { value: 14, prefix: "", suffix: "", label: "Kod yazmaya başladığım yaş" },
-    { value: 10, prefix: "", suffix: "+", label: "Tamamlanan proje" }, // TODO: gerçek sayı
+    { value: 0, suffix: "+", label: "Yıllık deneyim" }, // TODO
+    { value: 0, suffix: "+", label: "Tamamlanan proje" }, // TODO
+    { value: 0, suffix: "", label: "Mutlu müşteri / ekip" }, // TODO
   ],
   principles: [
-    { title: "Önce kullanıcı", text: "Her satır kod, birinin işini kolaylaştırmak için yazılır." },
-    { title: "Hız ve sağlamlık", text: "Hızlı teslim ederim ama temeli sağlam atarım." },
-    { title: "Sürekli öğrenme", text: "Yeni teknolojileri denemeden duramam." },
+    { title: "İlke bir", text: "Çalışırken önem verdiğin ilk şey." }, // TODO
+    { title: "İlke iki", text: "Seni diğerlerinden ayıran yaklaşımın." }, // TODO
+    { title: "İlke üç", text: "Sürekli geliştirdiğin bir alışkanlığın." }, // TODO
   ],
-  skills: [
-    "React",
-    "Next.js",
-    "React Native",
-    "TypeScript",
-    "Angular",
-    ".NET Core",
-    "FastAPI",
-    "Python",
-    "TensorFlow",
-    "PostgreSQL",
-    "Docker",
-    "Tailwind CSS",
-  ],
+  skills: ["Yetenek 1", "Yetenek 2", "Yetenek 3", "Yetenek 4", "Yetenek 5", "Yetenek 6"], // TODO
 };
 
 export type Job = {
@@ -58,40 +47,37 @@ export type Job = {
   type: string;
   description: string;
   tags: string[];
-  image: string;
+  color: string;
 };
 
-// TODO: Şirket adlarını, tarihleri ve açıklamaları gerçek bilgilerle değiştir.
+// TODO: Çalıştığın işleri ekle
 export const jobs: Job[] = [
   {
-    company: "Şirket Adı (TODO)",
-    role: "Frontend Developer",
-    period: "2023 — Günümüz",
+    company: "Şirket A",
+    role: "Pozisyon",
+    period: "20XX — Günümüz",
+    type: "Tam zamanlı",
+    description: "Bu işte neler yaptığını, hangi sorumlulukları aldığını ve ne başardığını anlat.",
+    tags: ["Teknoloji", "Araç"],
+    color: "#ff5a1f",
+  },
+  {
+    company: "Şirket B",
+    role: "Pozisyon",
+    period: "20XX — 20XX",
     type: "Yarı zamanlı",
-    description:
-      "React ve Next.js ile ölçeklenebilir arayüzler geliştirdim, tasarım sistemini kurdum ve performansı iyileştirdim.",
-    tags: ["React", "Next.js", "TypeScript"],
-    image: "/images/dotnetreact.png",
+    description: "Bu işte neler yaptığını, hangi sorumlulukları aldığını ve ne başardığını anlat.",
+    tags: ["Teknoloji", "Araç"],
+    color: "#3d7bff",
   },
   {
-    company: "Şirket Adı (TODO)",
-    role: "AI Consultant",
-    period: "2023 — 2024",
-    type: "Danışmanlık",
-    description:
-      "Şirketlerin iş süreçlerine yapay zekâ çözümleri entegre ettim; model seçimi, veri hazırlığı ve prototiplemeyi yürüttüm.",
-    tags: ["Python", "TensorFlow", "FastAPI"],
-    image: "/images/malaria.jpg",
-  },
-  {
-    company: "Freelance",
-    role: "Full-Stack Developer",
-    period: "2022 — Günümüz",
-    type: "Serbest",
-    description:
-      "Farklı müşteriler için uçtan uca web ve mobil uygulamalar geliştirdim: .NET / FastAPI backend, React / Angular frontend.",
-    tags: [".NET", "Angular", "React Native"],
-    image: "/images/angulardotnet.jpg",
+    company: "Şirket C",
+    role: "Pozisyon",
+    period: "20XX — 20XX",
+    type: "Staj",
+    description: "Bu işte neler yaptığını, hangi sorumlulukları aldığını ve ne başardığını anlat.",
+    tags: ["Teknoloji", "Araç"],
+    color: "#18c27a",
   },
 ];
 
@@ -101,72 +87,18 @@ export type App = {
   year: string;
   description: string;
   tags: string[];
-  image: string;
+  image?: string;
   href: string;
-  accent: string;
+  color: string;
 };
 
+// TODO: Uygulamalarını ekle
 export const apps: App[] = [
-  {
-    title: "Malaria Diagnosis AI",
-    category: "Yapay Zekâ",
-    year: "2023",
-    description: "Mikroskop görüntülerinden sıtma teşhisi koyan derin öğrenme modeli.",
-    tags: ["TensorFlow", "CNN", "Python"],
-    image: "/images/malaria.jpg",
-    href: "https://github.com/BaduA/malaria-diagnosis-ai",
-    accent: "#ff5a1f",
-  },
-  {
-    title: "BilkentMap",
-    category: "Mobil",
-    year: "2023",
-    description: "Bilkent kampüsü için etkileşimli harita ve navigasyon uygulaması.",
-    tags: ["React Native", "Maps"],
-    image: "/images/bilkent.png",
-    href: "https://github.com/BaduA/BilkentMap-mobile",
-    accent: "#3d7bff",
-  },
-  {
-    title: "BilkentMarket",
-    category: "Web",
-    year: "2023",
-    description: "Öğrenciler arası ikinci el alım-satım platformu.",
-    tags: ["FastAPI", "React", "PostgreSQL"],
-    image: "/images/market.jpg",
-    href: "https://github.com/BaduA/bilkentmarket-python-react",
-    accent: "#18c27a",
-  },
-  {
-    title: "Car Price Prediction",
-    category: "Yapay Zekâ",
-    year: "2022",
-    description: "Araç özelliklerinden ikinci el fiyat tahmini yapan regresyon modeli.",
-    tags: ["Python", "scikit-learn"],
-    image: "/images/carprice.webp",
-    href: "https://github.com/BaduA/carpriceprediction",
-    accent: "#f2c230",
-  },
-  {
-    title: ".NET × React",
-    category: "Web",
-    year: "2022",
-    description: "Clean architecture ile .NET Web API ve React istemcisi.",
-    tags: [".NET Core", "React"],
-    image: "/images/dotnetreact.png",
-    href: "https://github.com/BaduA/dotnet-react",
-    accent: "#a26bff",
-  },
-  {
-    title: "Onion Arch × Angular",
-    category: "Web",
-    year: "2022",
-    description: "Onion mimarisiyle .NET backend ve Angular frontend.",
-    tags: [".NET Core", "Angular"],
-    image: "/images/angulardotnet.jpg",
-    href: "https://github.com/BaduA/OnionArch-dotnet-angular",
-    accent: "#ff3d7f",
-  },
+  { title: "Uygulama Bir", category: "Web", year: "20XX", description: "Uygulamanın ne işe yaradığını tek cümleyle anlat.", tags: ["Etiket"], href: "#", color: "#ff5a1f" },
+  { title: "Uygulama İki", category: "Mobil", year: "20XX", description: "Uygulamanın ne işe yaradığını tek cümleyle anlat.", tags: ["Etiket"], href: "#", color: "#3d7bff" },
+  { title: "Uygulama Üç", category: "Yapay Zekâ", year: "20XX", description: "Uygulamanın ne işe yaradığını tek cümleyle anlat.", tags: ["Etiket"], href: "#", color: "#18c27a" },
+  { title: "Uygulama Dört", category: "Web", year: "20XX", description: "Uygulamanın ne işe yaradığını tek cümleyle anlat.", tags: ["Etiket"], href: "#", color: "#f2c230" },
+  { title: "Uygulama Beş", category: "Tasarım", year: "20XX", description: "Uygulamanın ne işe yaradığını tek cümleyle anlat.", tags: ["Etiket"], href: "#", color: "#a26bff" },
 ];
 
 export type Education = {
@@ -178,25 +110,23 @@ export type Education = {
   highlights: string[];
 };
 
-// TODO: Yılları ve not ortalaması gibi detayları kontrol et.
+// TODO: Eğitim bilgilerini ekle
 export const education: Education[] = [
   {
-    school: "Bilkent Üniversitesi",
-    degree: "Bilgisayar Mühendisliği, Lisans",
-    period: "2022 — Devam ediyor",
-    location: "Ankara",
-    description:
-      "Algoritmalar, yazılım mühendisliği, yapay zekâ ve dağıtık sistemler üzerine yoğunlaşıyorum.",
-    highlights: ["Burslu öğrenci (TODO)", "Kampüs projeleri: BilkentMap, BilkentMarket"],
+    school: "Üniversite Adı",
+    degree: "Bölüm, Derece",
+    period: "20XX — 20XX",
+    location: "Şehir",
+    description: "Bu dönemde neler öğrendiğini ve neye odaklandığını anlat.",
+    highlights: ["Başarı / ödül", "Önemli proje veya kulüp"],
   },
   {
-    school: "Buca Fen Lisesi",
-    degree: "Fen Bilimleri",
-    period: "2018 — 2022",
-    location: "İzmir",
-    description:
-      "Matematik ve fen ağırlıklı eğitim. Bu dönemde yazılıma ciddi şekilde başladım.",
-    highlights: ["YKS: ~3 milyon aday arasında 181.", "İlk mobil ve web projeleri"],
+    school: "Lise Adı",
+    degree: "Alan",
+    period: "20XX — 20XX",
+    location: "Şehir",
+    description: "Bu dönemde neler öğrendiğini ve neye odaklandığını anlat.",
+    highlights: ["Başarı / ödül"],
   },
 ];
 
